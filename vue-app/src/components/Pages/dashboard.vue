@@ -1,17 +1,33 @@
 <script type="js">
 import { Bar, Chart } from 'vue-chartjs'
-import dropdown1 from '../Reusables/dropdownStart.vue'
-import dropdown2 from '../Reusables/dropdownEnd.vue'
+import dropdown from '../Reusables/dropdown.vue'
 import { dataService } from '../../services/service.js'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+
+const backgroundColor = [
+    'rgba(255, 99, 132, 0.2)',
+    'rgba(54, 162, 235, 0.2)',
+    'rgba(255, 206, 86, 0.2)',
+    'rgba(75, 192, 192, 0.2)',
+    'rgba(153, 102, 255, 0.2)',
+    'rgba(255, 159, 64, 0.2)',
+]
+
+const borderColor = [
+    'rgba(255,99,132,1)',
+    'rgba(54, 162, 235, 1)',
+    'rgba(255, 206, 86, 1)',
+    'rgba(75, 192, 192, 1)',
+    'rgba(153, 102, 255, 1)',
+    'rgba(255, 159, 64, 1)',
+]
 
 export default {
     name: 'Dashboard',
     components: {
         BarChart: Bar,
-        dropdown1: dropdown1,
-        dropdown2: dropdown2,
+        dropdown: dropdown
     },
     data() {
         return {
@@ -20,11 +36,9 @@ export default {
                 datasets: [{
                     data: [],
                     label: 'Your Spending at a glance',
-                    backgroundColor: '#f56565',
-                    borderColor: '#f56565',
+                    backgroundColor: backgroundColor,
+                    borderColor: borderColor,
                     borderWidth: 1,
-                    hoverBackgroundColor: '#f56565',
-                    hoverBorderColor: '#f56565',
                 }],
             },
             options: {
@@ -36,7 +50,9 @@ export default {
             date_range: [],
             start_date: '',
             end_date: '',
-            spending: []
+            spending: [],
+            start: 'Start',
+            end: 'End'
         }
     },
     beforeMount() {
@@ -62,11 +78,9 @@ export default {
                 datasets: [{
                     data: [],
                     label: 'Your Spending at a glance',
-                    backgroundColor: '#f56565',
-                    borderColor: '#f56565',
+                    backgroundColor: backgroundColor,
+                    borderColor: borderColor,
                     borderWidth: 1,
-                    hoverBackgroundColor: '#f56565',
-                    hoverBorderColor: '#f56565',
                 }],
             }
             this.spending.forEach(elem => {
@@ -76,13 +90,15 @@ export default {
             });
             this.data_ready = true
         },
-        selectedStartDate(date) {
-            this.start_date = date
-            this.getSpendingByDate()
-        },
-        selectedEndDate(date) {
-            if (date < this.start_date) return alert('End date cannot be before start date')
-            this.end_date = date
+        selectedDate(date, type) {
+            if (type === 'Start') {
+                this.start_date = date
+            } else {
+                const start = this.service.formatDateToEpoch(this.start_date)
+                const end = this.service.formatDateToEpoch(date)
+                if (end < start) return alert('End date cannot be before start date')
+                this.end_date = date
+            }
             this.getSpendingByDate()
         }
     }
@@ -92,10 +108,10 @@ export default {
 <template>
     <div class="flex items-center">
         <span class="mr-5">Choose a range here to populate your spending data</span>
-        <dropdown1 :data_range="date_range" @selectedDate="selectedStartDate"></dropdown1>
-        <dropdown2 :data_range="date_range" @selectedDate="selectedEndDate"></dropdown2>
+        <dropdown :data_range="date_range" :date_type="start" @selectedDate="selectedDate"></dropdown>
+        <dropdown :data_range="date_range" :date_type="end" @selectedDate="selectedDate"></dropdown>
     </div>
-    <div v-if="data_ready" class="mb-10 mt-36 h-56 md:h-96">
+    <div v-if="data_ready" class="pb-10 mt-10 md:mt-36 h-[30rem] w-full">
         <bar-chart :data="data" :options="options"></bar-chart>
     </div>
 </template>

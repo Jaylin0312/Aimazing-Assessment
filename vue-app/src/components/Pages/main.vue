@@ -25,7 +25,7 @@ export default {
 </script>
 
 <template>
-  <div class="h-screen w-full p-10">
+  <div class="w-full p-10">
     <div class="mb-4">
       <div class="mb-4">Welcome {{ this.user }} ! This is your spending dashboard </div>
     </div>
