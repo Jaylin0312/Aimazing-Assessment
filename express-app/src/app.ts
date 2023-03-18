@@ -10,32 +10,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-async function main() {
-    // ... you will write your Prisma Client queries here
-    const newUser = await prisma.users.create({
-      data: {
-        name: 'Alice',
-        email: 'Alice@gmail.com',
-      },
-    })
-    const allUsers = await prisma.users.findMany()
-    console.log(allUsers)
-  }
+app.get("/spending", async (req, res) => {
+    const allSpending = await prisma.spending.findMany()
+    const formattedSpending = allSpending.map((spending) => ({
+      ...spending,
+      record_time: spending.record_time.toString(),
+    }))
+    res.json(formattedSpending)
+})
 
-app.get("/", (_req, res: Response) => {
-  res.send(`Server is running on port: ${port}`);
-});
+app.get("/users", async (req, res) => {
+    const users = await prisma.users.findMany()
+    res.json(users)
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
