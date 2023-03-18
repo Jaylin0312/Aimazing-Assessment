@@ -1,11 +1,13 @@
 <script lang="js">
 import { dataService } from '../../services/service.js'
 import Dashboard from './dashboard.vue'
+import Card from '../Reusables/card.vue'
 
 export default {
   name: 'Main',
   components: {
-    Dashboard
+    Dashboard,
+    Card,
   },
   data() {
     return {
@@ -27,7 +29,7 @@ export default {
 <template>
   <div class="w-full p-10">
     <div class="mb-4">
-      <div class="mb-4">Welcome {{ this.user }} ! This is your spending dashboard </div>
+      <Card :user="this.user"></Card>
     </div>
     <Dashboard></Dashboard>
   </div>

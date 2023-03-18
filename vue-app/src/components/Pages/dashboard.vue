@@ -23,6 +23,17 @@ const borderColor = [
     'rgba(255, 159, 64, 1)',
 ]
 
+const data = {
+    labels: [],
+    datasets: [{
+        data: [],
+        label: 'Your Spending at A Glance',
+        backgroundColor: backgroundColor,
+        borderColor: borderColor,
+        borderWidth: 1,
+    }],
+}
+
 export default {
     name: 'Dashboard',
     components: {
@@ -31,16 +42,7 @@ export default {
     },
     data() {
         return {
-            data: {
-                labels: [],
-                datasets: [{
-                    data: [],
-                    label: 'Your Spending at a glance',
-                    backgroundColor: backgroundColor,
-                    borderColor: borderColor,
-                    borderWidth: 1,
-                }],
-            },
+            data: data,
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -106,12 +108,12 @@ export default {
 </script>
 
 <template>
-    <div class="flex items-center">
-        <span class="mr-5">Choose a range here to populate your spending data</span>
+    <div class="flex items-center px-6">
+        <span class="mr-5 text-base text-neutral-600">Date Range</span>
         <dropdown :data_range="date_range" :date_type="start" @selectedDate="selectedDate"></dropdown>
         <dropdown :data_range="date_range" :date_type="end" @selectedDate="selectedDate"></dropdown>
     </div>
-    <div v-if="data_ready" class="pb-10 mt-10 md:mt-36 h-[30rem] w-full">
+    <div v-if="data_ready" class="mb-10 px-10 mt-10 md:mt-28 h-[30rem] w-full">
         <bar-chart :data="data" :options="options"></bar-chart>
     </div>
 </template>
