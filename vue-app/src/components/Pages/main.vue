@@ -1,5 +1,5 @@
 <script lang="js">
-import { dataService } from '../../services/data.js'
+import { dataService } from '../../services/service.js'
 import Dashboard from './dashboard.vue'
 
 export default {
@@ -26,7 +26,9 @@ export default {
 
 <template>
   <div class="h-screen w-full p-10">
-    <div class="mb-4">Welcome {{ this.user }} ! This is your spending dashboard </div>
+    <div class="mb-4">
+      <div class="mb-4">Welcome {{ this.user }} ! This is your spending dashboard </div>
+    </div>
     <Dashboard></Dashboard>
   </div>
 </template>
