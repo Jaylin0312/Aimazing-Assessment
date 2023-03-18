@@ -19,7 +19,7 @@ model Users {
 
 model Spending {
   record_time BigInt  @id
-  amount      Decimal
+  amount      Decimal @db.Decimal(12,2)
   user        Users   @relation("UserSpendings", fields: [userId], references: [id])
   userId      Int 
 }
