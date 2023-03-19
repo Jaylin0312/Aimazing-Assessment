@@ -35,8 +35,6 @@
 
 ## About The Project
 
----
-
 ![Product Name Screen Shot][project-screenshot]
 
 The purpose of this system is to provide users with a dashboard to show personal spending statistics. The system will allow users to view their spending statistics in a graphical format based on the date range selected.
@@ -44,8 +42,9 @@ The purpose of this system is to provide users with a dashboard to show personal
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
----
+
 Backend:
+
 - Express
 - Prisma
 - PostgreSQL
@@ -53,6 +52,7 @@ Backend:
 - Docker
 
 Frontend:
+
 - Vite
 - Vue3
 - TailwindCSS
@@ -65,12 +65,9 @@ Frontend:
 
 ## Getting Started
 
----
-
 Install Yarn, NodeJS, and Docker before installing this project.
 
 ### Prerequisites
----
 
 1. yarn 1.22.19
 
@@ -88,7 +85,6 @@ npm install node@latest -g
    https://docs.docker.com/get-docker/
 
 ### Setting up the project
----
 
 Follow these steps to install and set up this web app locally.
 
