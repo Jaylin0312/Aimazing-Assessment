@@ -14,12 +14,10 @@
 
 ## Quick Start
 
-- Clone or download this repository
-
 - Run Docker containers
 
 ```
-docker-compose up -d
+docker compose up
 ```
 
 ### Access to PGAmin
