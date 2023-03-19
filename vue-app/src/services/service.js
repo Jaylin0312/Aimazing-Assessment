@@ -24,7 +24,7 @@ export class dataService {
     try {
       start = this.formatDateToEpoch(start);
       end = this.formatDateToEpoch(end);
-      console.log(end)
+      end += 86400;
       const res = await axios.get("http://localhost:3000/spending");
       const spendingByDate = res.data.filter(elem => elem.record_time >= start && elem.record_time <= end);
       spendingByDate.sort((a, b) => a.record_time - b.record_time);
