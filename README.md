@@ -84,7 +84,21 @@ npm install node@latest -g
 3. docker 20.10.8
    https://docs.docker.com/get-docker/
 
-### Setting up the project
+### Quick Set Up
+
+1. Clone the repo
+
+```
+gh repo clone Jaylin0312/Aimazing-Assessment
+```
+
+2. Run the script to set up the project
+
+```
+./scripts/start-all.sh
+```
+
+### Setting up the project manually
 
 Follow these steps to install and set up this web app locally.
 
