@@ -35,7 +35,7 @@
 
 ## About The Project
 
-![Product Name Screen Shot][project-screenshot]
+![Product Name Screen Shot][project-recording]
 
 The purpose of this system is to provide users with a dashboard to show personal spending statistics. The system will allow users to view their spending statistics in a graphical format based on the date range selected.
 
@@ -130,4 +130,4 @@ yarn run dev
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[project-screenshot]: ./Projectss.png
+[project-recording]: ./projectRecording.gif
