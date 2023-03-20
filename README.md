@@ -94,27 +94,21 @@ Follow these steps to install and set up this web app locally.
 gh repo clone Jaylin0312/Aimazing-Assessment
 ```
 
-2. In express-app folder, spin up a docker container
+2. Refer to express-app/README.md to set up the express app
 
-```
-docker compose up
-```
-
-3. Refer to express-app/README.md to set up the express app
-
-4. In vue-app folder, install dependencies
+3. In vue-app folder, install dependencies
 
 ```
 yarn install
 ```
 
-5. Make build
+4. Make build
 
 ```
 yarn run build
 ```
 
-4. Run the app
+5. Run the app
 
 ```
 yarn run dev

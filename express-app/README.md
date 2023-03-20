@@ -9,15 +9,14 @@
 
 ## Requirements:
 
-- docker
-- docker-compose
+- docker (https://docs.docker.com/get-docker/)
 
 ## Quick Start
 
-- Run Docker containers
+1. Run Docker container to start the API server and PostgreSQL database
 
 ```
-docker compose up
+docker compose up --build
 ```
 
 ### Access to PGAmin
@@ -27,7 +26,7 @@ docker compose up
   - **Hostname/address**: `postgres` (as a default)
   - **username/password**: `postgres` (as a default)
 
-## Local Development workarounds
+## Local Development
 
 ### Requirements:
 
@@ -35,21 +34,27 @@ docker compose up
 
 ---
 
-- Stop Prisma container `docker stop prisma-api` (container name from .yml file)
+1. Stop Prisma container `docker stop prisma-api` (container name from .yml file)
+
 - **Make sure that you have `.env` file inside prisma directory with this content**
 
 ```
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/TEST_DB?schema=public"
 ```
 
-- Install dependencies `npm i`
-- Run `npx prisma generate` for recreating connection
-- Run `npm run dev` for starting local API server
+2. Access pgAdmin at [localhost:5555](http://localhost:5555)
 
-### You can also run Prisma Studio locally (basic visual interface to access DB)
+3. Establish a server with postgresql container's IP address. To check the IP address of the container, run `docker inspect [container id of postgres]` in your terminal.
 
-- Run `npx prisma studio`
-- Open http://localhost:5556
+4. Check if database postgres is created. Ensure there is data in the database.
+
+5. Install dependencies `npm i`
+
+6. Run `npx prisma generate` for recreating connection
+
+7. Run `npm run dev` for starting local API server
+
+### Recreate Docker containers
 
 > Let's say you made changes to Prisma API server source code and want to check how it works together with the rest of the Docker services.
 
