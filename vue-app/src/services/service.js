@@ -3,7 +3,7 @@ import axios from "axios";
 export class dataService {
   async getUsers() {
     try {
-      const res = await axios.get("http://localhost:3000/users");
+      const res = await axios.get("http://localhost:12345/users");
       const user = res.data[0].name;
       return user;
     } catch (err) {
@@ -12,7 +12,7 @@ export class dataService {
   }
   async getSpending() {
     try {
-      const res = await axios.get("http://localhost:3000/spending");
+      const res = await axios.get("http://localhost:12345/spending");
       const spending = res.data;
       spending.sort((a, b) => a.record_time - b.record_time);
       return spending;
@@ -25,7 +25,7 @@ export class dataService {
       start = this.formatDateToEpoch(start);
       end = this.formatDateToEpoch(end);
       end += 86400;
-      const res = await axios.get("http://localhost:3000/spending");
+      const res = await axios.get("http://localhost:12345/spending");
       const spendingByDate = res.data.filter(elem => elem.record_time >= start && elem.record_time <= end);
       spendingByDate.sort((a, b) => a.record_time - b.record_time);
       return spendingByDate;
