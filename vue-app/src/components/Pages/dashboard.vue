@@ -1,5 +1,5 @@
 <script type="js">
-import { Bar, Chart } from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'
 import dropdown from '../Reusables/dropdown.vue'
 import { dataService } from '../../services/service.js'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
@@ -21,6 +21,11 @@ const data = {
     }],
 }
 
+const options = {
+    responsive: true,
+    maintainAspectRatio: false
+}
+
 export default {
     name: 'Dashboard',
     components: {
@@ -30,10 +35,7 @@ export default {
     data() {
         return {
             data: data,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-            },
+            options: options,
             service: new dataService(),
             data_ready: false,
             date_range: [],
@@ -86,6 +88,9 @@ export default {
         },
         selectedDate(date, type) {
             if (type === 'Start') {
+                const start = this.service.formatDateToEpoch(date)
+                const end = this.service.formatDateToEpoch(this.end_date)
+                if (start > end) return alert('Start date cannot be after end date')
                 this.start_date = date
             } else {
                 const start = this.service.formatDateToEpoch(this.start_date)
